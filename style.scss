@@ -1,0 +1,208 @@
+//varebils
+$colorOne: #f0483a;
+$colorTwo: #d10a20;
+$mainColor: #fff;
+
+//plasholder
+%flex{
+    display: flex;
+    align-items: center;
+}
+
+%after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    background-color: $mainColor;
+    width: 50px;
+    height: 2px;
+}
+
+//mixin
+@mixin font($color, $transform , $size) {
+    color: $color;
+    text-transform: $transform;
+    font-size: $size;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+
+.main{
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient($colorOne , $colorTwo);
+    @extend %flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 80px;
+    position: relative;
+
+    header{
+        width: 100%;
+        height: 100px;
+        @extend %flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 80px;
+
+        .menu{display: none;}
+
+        .logo{
+            width: 25%;
+            a{img{max-width: 60px;}}
+        }
+
+        nav{
+            width: 60%;
+
+            ul{
+                @extend %flex;
+                justify-content: space-evenly;
+
+                li{
+                    list-style-type: none;
+
+                    a{
+                        text-decoration: none;
+                        color: $mainColor;
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+
+    .content{
+        width: 100%;
+        @extend %flex;
+        justify-content: space-between;
+        
+        
+        .boxtext{
+            width: 100%;
+            max-width: 600px;
+
+            h2{
+                @include font($mainColor , capitalize , 5em);
+                font-weight: 300;
+
+                span{font-weight: 700;}
+            }
+            p{
+                @include font($mainColor, capitalize , 1.1em);
+                line-height: 1.4em;
+            }
+            .btn{
+                text-decoration: none;
+                @include font($colorTwo, uppercase , 1em);
+                background-color: $mainColor;
+                padding: 10px 15px;
+                border-radius: 20px;
+                display: inline-block;
+                margin-top: 30px;
+                user-select: none;
+                font-weight: 400;
+                transition: all 350ms ease-in-out;
+
+                &:hover{
+                    color: #000;
+                    background-color: transparent;
+                    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.418);
+                }
+            }
+        }
+
+        .boximages{
+            .img{
+                display: none;
+                img{
+                    max-width: 400px;
+                }
+
+            }
+            .active{display: block;}
+        }
+    }
+
+    .icon{
+        position: absolute;
+        bottom: 20px;
+        left: 10px;
+        width: 250px;
+
+        ul{
+            @extend %flex;
+            justify-content: space-around;
+
+            li{
+                list-style-type: none;
+                i{
+                    color: $mainColor;
+                    font-size: 1.6em;
+                    cursor: pointer;
+                    transition: all 350ms ease-out;
+                    user-select: none;
+
+                    &:hover{
+                        transform: translateY(-10px);
+                    }
+                }
+            }
+        }
+    }
+
+    .prenext{
+        position: absolute;
+        bottom: 20px;
+        right: 20%;
+
+        h5{
+            color: $mainColor;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            position: relative;
+
+            &::after{
+               @extend %after;
+               left: -50%;
+            }
+
+            &::before{
+                @extend %after;
+                right: -50%;
+            }
+        }
+
+        span{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border: 2px solid $mainColor;
+            position: relative;
+            transition: all 300ms ease-in;
+            margin: 0 10px;
+
+            i{
+                
+                color: $mainColor;
+                font-size: 1.8em;
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                transform: translate(-50%);
+            }
+        }
+
+    }
+}
+//media query
+@import 'media';
